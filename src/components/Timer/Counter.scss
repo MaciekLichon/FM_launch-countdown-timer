@@ -1,0 +1,185 @@
+@import '../../styles/variables';
+
+.counter {
+  display: flex;
+  gap: 9px;
+  flex-direction: column;
+
+  perspective: 2200px;
+
+  @media (min-width: 768px) {
+    gap: 16px;
+  }
+
+  &__unit {
+    color: $clr-grayish;
+    font-size: $fs-regular_s;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      font-size: $fs-regular_l;
+      letter-spacing: 5.919px;
+    }
+  }
+}
+
+// ------------- CARD & ANIMATION -------------
+
+$anim-duration: 0.5s;
+
+.card {
+  position: relative;
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform-style: preserve-3d;
+
+  color: $clr-red;
+  font-size: $fs-timer_s;
+  line-height: 71px;
+  letter-spacing: -1px;
+
+  @media (min-width: 768px) {
+    width: 148px;
+    height: 148px;
+    font-size: $fs-timer_l;
+    letter-spacing: -2.4px;
+  }
+}
+
+/* middle line */
+.card::after {
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  content: '';
+  width: calc(100% - 2*3px);
+  height: 1px;
+  background: black;
+  opacity: 0.25;
+  z-index: 2;
+}
+
+.botside, .topside, .flipper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botside {
+  transform: rotateX(30deg);
+  z-index: 1;
+  background-image: linear-gradient(transparent 50%, $clr-400 50%, $clr-400);
+  box-shadow: 0 5px 0 0 black;
+
+  @media (min-width: 768px) {
+    box-shadow: 0 10px 0 0 black;
+  }
+}
+
+.topside {
+  z-index: 1;
+  background-image: linear-gradient($clr-400 50%, transparent 50%, transparent);
+  filter: brightness(0.85);
+}
+
+.flipper {
+  filter: brightness(0.85);
+  background-image: linear-gradient($clr-400 50%, transparent 50%, transparent);
+  z-index: 2;
+}
+
+/* side dots added for each element to work with perspective and 3d transforms */
+.topside::after, .topside::before, .flipper::after, .flipper::before, .botside::after, .botside::before {
+  content: '';
+  position: absolute;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: black;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  @media (min-width: 768px) {
+    width: 12px;
+    height: 12px;
+  }
+}
+.topside::after, .flipper::after, .botside::after {
+  left: -3px;
+  background: linear-gradient(to left, black, black 50%, transparent 50%, transparent );
+
+  @media (min-width: 768px) {
+    left: -6px;
+  }
+}
+.topside::before, .flipper::before, .botside::before {
+  right: -3px;
+  background: linear-gradient(to right, black, black 50%, transparent 50%, transparent );
+
+  @media (min-width: 768px) {
+    right: -6px;
+  }
+}
+
+
+.flipper.top {
+  animation-name: hideTop;
+  animation-timing-function: linear;
+  animation-duration: calc($anim-duration / 2);
+  animation-fill-mode: forwards;
+}
+
+.flipper.bot {
+  background-image: linear-gradient(transparent 50%, $clr-400 50%, $clr-400);
+  animation-name: showBottom;
+  animation-timing-function: linear;
+  animation-duration: calc($anim-duration / 2);
+  animation-fill-mode: forwards;
+}
+
+.flipper.bot + .botside {
+  transition-property: filter;
+  transition-duration: calc($anim-duration / 2);
+  filter: brightness(0.6);
+}
+
+@keyframes hideTop {
+  0% {
+    filter: brightness(0.85);
+    transform: rotateX(0deg);
+    visibility: visible;
+  }
+  100% {
+    filter: brightness(0.5);
+    transform: rotateX(-90deg);
+    visibility: hidden;
+  }
+}
+
+@keyframes showBottom {
+  0% {
+    filter: brightness(1.2);
+    visibility: visible;
+    transform: rotateX(90deg);
+  }
+  100% {
+    filter: brightness(1);
+    transform: rotateX(30deg);
+  }
+}

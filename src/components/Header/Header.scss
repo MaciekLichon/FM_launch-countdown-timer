@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+.header {
+  color: $clr-100;
+  font-size: $fs-header_s;
+  letter-spacing: 6.136px;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 142px;
+
+  @media (min-width: 768px) {
+    padding-top: 132px;
+    font-size: $fs-header_l;
+    letter-spacing: 7.5px;
+  }
+}

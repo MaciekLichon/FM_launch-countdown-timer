@@ -1,0 +1,10 @@
+@import './variables.scss';
+
+body {
+  font-family: $ff-regular;
+  font-weight: $fw-bold;
+  background-image: url('../images/bg-stars.svg'), linear-gradient(180deg, #1D1E28 0.06%, #261C2D 94.83%, #261A2D 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  min-height: 100vh;
+}

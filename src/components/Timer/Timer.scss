@@ -1,0 +1,11 @@
+.timer {
+  margin-top: 54px;
+
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    margin-top: 104px;
+  }
+}
