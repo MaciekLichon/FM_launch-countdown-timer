@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/FM_launch-countdown-timer/static/css/main.dd9f7844.css",
+    "main.js": "/FM_launch-countdown-timer/static/js/main.c5a175d4.js",
+    "static/media/bg-stars.svg": "/FM_launch-countdown-timer/static/media/bg-stars.166881a1c03d6b1239f5.svg",
+    "index.html": "/FM_launch-countdown-timer/index.html",
+    "static/media/pattern-hills.svg": "/FM_launch-countdown-timer/static/media/pattern-hills.815d688fd937623063b5.svg",
+    "main.dd9f7844.css.map": "/FM_launch-countdown-timer/static/css/main.dd9f7844.css.map",
+    "main.c5a175d4.js.map": "/FM_launch-countdown-timer/static/js/main.c5a175d4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dd9f7844.css",
+    "static/js/main.c5a175d4.js"
+  ]
+}
